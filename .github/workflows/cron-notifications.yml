@@ -33,7 +33,7 @@ jobs:
           
       - name: Run cron job
         run: |
-          curl -X GET http://localhost:3001/api/cron/notifications
+          curl -X GET http://localhost:3000/api/cron/notifications
           
       - name: Stop application
         run: |
