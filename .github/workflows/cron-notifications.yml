@@ -2,8 +2,8 @@ name: Email Notifications Cron Job
 
 on:
   schedule:
-    # Chạy mỗi ngày lúc 9:00 AM UTC (16:00 VN)
-    - cron: '0 9 * * *'
+    # Chạy mỗi 5 phút
+    - cron: '*/5 * * * *'
   workflow_dispatch: # Cho phép chạy thủ công
 
 jobs:
