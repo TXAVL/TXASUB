@@ -1,0 +1,119 @@
+#!/usr/bin/env node
+
+const fs = require('fs')
+const path = require('path')
+
+class ErrorFixer {
+  constructor() {
+    this.fixedFiles = []
+    this.errors = []
+  }
+
+  // Fix all remaining errors
+  async fixAllErrors() {
+    console.log('🔧 Starting error fix process...')
+    
+    const componentsPath = path.join(process.cwd(), 'components')
+    this.scanDirectory(componentsPath)
+    
+    this.generateReport()
+  }
+
+  // Recursively scan and fix files
+  scanDirectory(dirPath) {
+    const items = fs.readdirSync(dirPath)
+    
+    for (const item of items) {
+      const fullPath = path.join(dirPath, item)
+      const stat = fs.statSync(fullPath)
+      
+      if (stat.isDirectory()) {
+        this.scanDirectory(fullPath)
+      } else if (item.endsWith('.tsx') || item.endsWith('.ts')) {
+        this.fixFile(fullPath)
+      }
+    }
+  }
+
+  // Fix individual file
+  fixFile(filePath) {
+    try {
+      const content = fs.readFileSync(filePath, 'utf8')
+      const relativePath = path.relative(process.cwd(), filePath)
+      
+      let updatedContent = content
+      let hasChanges = false
+
+      // Fix txa. references
+      if (content.includes('txa.')) {
+        updatedContent = updatedContent.replace(/txa\.allRightsReserved/g, '"Tất cả quyền được bảo lưu"')
+        updatedContent = updatedContent.replace(/txa\.language/g, '"Ngôn ngữ"')
+        hasChanges = true
+      }
+
+      // Fix xa. references (leftover from replacements)
+      if (content.includes('xa.')) {
+        updatedContent = updatedContent.replace(/\.xa\./g, '.')
+        updatedContent = updatedContent.replace(/xa\./g, '')
+        updatedContent = updatedContent.replace(/targetxa\./g, 'target.')
+        updatedContent = updatedContent.replace(/documentxa\./g, 'document.')
+        updatedContent = updatedContent.replace(/resultxa\./g, 'result.')
+        updatedContent = updatedContent.replace(/paymentxa\./g, 'payment.')
+        updatedContent = updatedContent.replace(/newPaymentxa\./g, 'newPayment.')
+        updatedContent = updatedContent.replace(/totalAmountxa\./g, 'totalAmount.')
+        updatedContent = updatedContent.replace(/exportFormatxa\./g, 'exportFormat.')
+        updatedContent = updatedContent.replace(/Objectxa\./g, 'Object.')
+        updatedContent = updatedContent.replace(/CarouselContextxa\./g, 'CarouselContext.')
+        updatedContent = updatedContent.replace(/ChartContextxa\./g, 'ChartContext.')
+        updatedContent = updatedContent.replace(/eventxa\./g, 'event.')
+        updatedContent = updatedContent.replace(/linkElementxa\./g, 'linkElement.')
+        updatedContent = updatedContent.replace(/componentxa\./g, 'component.')
+        updatedContent = updatedContent.replace(/\.xa\./g, '.')
+        hasChanges = true
+      }
+
+      if (hasChanges) {
+        fs.writeFileSync(filePath, updatedContent)
+        this.fixedFiles.push(relativePath)
+        console.log(`✅ Fixed: ${relativePath}`)
+      }
+    } catch (error) {
+      this.errors.push({ file: filePath, error: error.message })
+      console.error(`❌ Error fixing ${filePath}:`, error.message)
+    }
+  }
+
+  // Generate report
+  generateReport() {
+    const report = {
+      timestamp: new Date().toISOString(),
+      summary: {
+        totalFixed: this.fixedFiles.length,
+        totalErrors: this.errors.length
+      },
+      fixedFiles: this.fixedFiles,
+      errors: this.errors
+    }
+
+    fs.writeFileSync('data/language/fix-errors-report.json', JSON.stringify(report, null, 2))
+    
+    console.log('\n📊 Error Fix Report:')
+    console.log(`✅ Files fixed: ${report.summary.totalFixed}`)
+    console.log(`❌ Errors: ${report.summary.totalErrors}`)
+    console.log(`📄 Report saved to: data/language/fix-errors-report.json`)
+    
+    if (this.fixedFiles.length > 0) {
+      console.log('\n📝 Fixed files:')
+      this.fixedFiles.forEach(file => console.log(`  - ${file}`))
+    }
+    
+    if (this.errors.length > 0) {
+      console.log('\n❌ Errors:')
+      this.errors.forEach(error => console.log(`  - ${error.file}: ${error.error}`))
+    }
+  }
+}
+
+// Run fixer
+const fixer = new ErrorFixer()
+fixer.fixAllErrors()

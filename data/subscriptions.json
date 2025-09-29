@@ -1,0 +1,89 @@
+{
+  "users": {
+    "1234567890": {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "googleId": "1234567890",
+      "createdAt": "2021-01-01T00:00:00.000Z",
+      "profile": {
+        "emailNotifications": {
+          "enabled": true,
+          "expiringSoon": true,
+          "critical": true,
+          "weekly": false,
+          "monthly": true
+        }
+      }
+    },
+    "105968711043650964191": {
+      "subscriptions": [
+        {
+          "id": "1758991317179",
+          "name": "Cursor IDE",
+          "expiry": "2025-10-05",
+          "cost": 20,
+          "notes": "Gói PRO của Cursor",
+          "cycle": "monthly",
+          "autoRenew": false,
+          "finalExpiry": "2025-10-05",
+          "createdAt": "2025-09-27T16:41:57.179Z",
+          "updatedAt": "2025-09-27T17:04:33.976Z"
+        },
+        {
+          "id": "1758991317182",
+          "name": "Adobe Creative Cloud",
+          "expiry": "2025-12-31",
+          "cost": 50,
+          "notes": "Gói All Apps",
+          "cycle": "monthly",
+          "autoRenew": true,
+          "createdAt": "2025-01-01T00:00:00.000Z",
+          "updatedAt": "2025-09-28T11:48:25.952Z",
+          "finalExpiry": "2026-01-01"
+        },
+        {
+          "id": "1758992163631",
+          "name": "Canva Pro",
+          "expiry": "2025-11-23",
+          "cost": 100,
+          "notes": "TEST",
+          "cycle": "yearly",
+          "createdAt": "2025-09-27T16:56:03.631Z"
+        }
+      ],
+      "profile": {
+        "email": "xuananhdepzai9@gmail.com",
+        "name": "TXA VLOG",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocKkpni5NE6E7r1nWVg0CN6yrU_YDi1PN8-IgJ1v8P6PHB6l0z0=s96-c",
+        "emailNotifications": {
+          "enabled": true,
+          "expiringSoon": true,
+          "critical": true,
+          "weekly": false,
+          "monthly": true
+        },
+        "emailVerified": true
+      },
+      "twoFactorEnabled": true,
+      "twoFactorSecret": "IM4SCS2PJMRVEWCBFBHHGNSPHZCSC33POMZCQSDRINMCK7K2LBDQ"
+    },
+    "108161848095579918061": {
+      "subscriptions": [],
+      "profile": {
+        "email": "txafile@gmail.com",
+        "name": "B NCDB",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocIdfbRzQyM7YuCDjPiNfBxPsrXQTjATMq-9MrjxiitzrLFmYk7P=s96-c",
+        "emailVerified": true,
+        "emailNotifications": {
+          "enabled": true,
+          "expiringSoon": true,
+          "critical": true,
+          "weekly": false,
+          "monthly": true
+        }
+      },
+      "twoFactorEnabled": true,
+      "twoFactorSecret": "EFIFOYLJF5NCGTLXENYDU6DIKJRES42AJZ3SGZ32KUWDGOLVNMWA"
+    }
+  }
+}

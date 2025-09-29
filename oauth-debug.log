@@ -1,0 +1,22 @@
+[2025-09-28T17:23:14.824Z] GOOGLE OAUTH INIT: {"CLIENT_ID":"700824851051-8naif17glg378qla6n3fej8iuponm80k.apps.googleusercontent.com","CLIENT_SECRET":"SET","REDIRECT_URI":"http://localhost:3001/api/auth/google/callback"}
+[2025-09-28T17:23:14.831Z] Generated auth URL: https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=profile%20email&response_type=code&client_id=700824851051-8naif17glg378qla6n3fej8iuponm80k.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3001%2Fapi%2Fauth%2Fgoogle%2Fcallback
+[2025-09-28T17:23:16.015Z] GOOGLE OAUTH CALLBACK: {"fullUrl":"http://localhost:3001/api/auth/google/callback?code=4%2F0AVGzR1DqaGLY0jvrUC-lG33HDsOi17qfV8mbJnmSetdCdN0ysXQUEQur6V-CVuMCTXfrFA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=none","searchParams":{"code":"4/0AVGzR1DqaGLY0jvrUC-lG33HDsOi17qfV8mbJnmSetdCdN0ysXQUEQur6V-CVuMCTXfrFA","scope":"email profile https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/userinfo.email","authuser":"0","prompt":"none"},"code":"4/0AVGzR1DqaGLY0jvrUC-lG33HDsOi17qfV8mbJnmSetdCdN0ysXQUEQur6V-CVuMCTXfrFA","CLIENT_ID":"700824851051-8naif17glg378qla6n3fej8iuponm80k.apps.googleusercontent.com","CLIENT_SECRET":"SET","REDIRECT_URI":"http://localhost:3001/api/auth/google/callback"}
+[2025-09-28T17:23:16.025Z] Attempting to get tokens from Google...
+[2025-09-28T17:23:16.580Z] Tokens received: {"access_token":"SET","refresh_token":"NOT SET","id_token":"SET"}
+[2025-09-28T17:23:16.583Z] Verifying ID token...
+[2025-09-28T17:23:16.837Z] User payload: {"sub":"108161848095579918061","email":"txafile@gmail.com","name":"B NCDB"}
+[2025-09-28T17:23:16.839Z] Email verification is required, checking status for: txafile@gmail.com
+[2025-09-28T17:23:16.846Z] Email verification status: false
+[2025-09-28T17:23:16.849Z] Email not verified, creating verification token for: txafile@gmail.com
+[2025-09-28T17:26:15.449Z] GOOGLE OAUTH INIT: {"CLIENT_ID":"700824851051-8naif17glg378qla6n3fej8iuponm80k.apps.googleusercontent.com","CLIENT_SECRET":"SET","REDIRECT_URI":"http://localhost:3001/api/auth/google/callback"}
+[2025-09-28T17:26:15.452Z] Generated auth URL: https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=profile%20email&response_type=code&client_id=700824851051-8naif17glg378qla6n3fej8iuponm80k.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3001%2Fapi%2Fauth%2Fgoogle%2Fcallback
+[2025-09-28T17:26:17.452Z] GOOGLE OAUTH CALLBACK: {"fullUrl":"http://localhost:3001/api/auth/google/callback?code=4%2F0AVGzR1B3MtF3ciZD8jN9pcmz5P4LehyPcNhBsY327HXPTZklqgRPtWFlt09_eLWhjTItOw&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=0&prompt=none","searchParams":{"code":"4/0AVGzR1B3MtF3ciZD8jN9pcmz5P4LehyPcNhBsY327HXPTZklqgRPtWFlt09_eLWhjTItOw","scope":"email profile openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile","authuser":"0","prompt":"none"},"code":"4/0AVGzR1B3MtF3ciZD8jN9pcmz5P4LehyPcNhBsY327HXPTZklqgRPtWFlt09_eLWhjTItOw","CLIENT_ID":"700824851051-8naif17glg378qla6n3fej8iuponm80k.apps.googleusercontent.com","CLIENT_SECRET":"SET","REDIRECT_URI":"http://localhost:3001/api/auth/google/callback"}
+[2025-09-28T17:26:17.455Z] Attempting to get tokens from Google...
+[2025-09-28T17:26:18.008Z] Tokens received: {"access_token":"SET","refresh_token":"NOT SET","id_token":"SET"}
+[2025-09-28T17:26:18.010Z] Verifying ID token...
+[2025-09-28T17:26:19.037Z] User payload: {"sub":"108161848095579918061","email":"txafile@gmail.com","name":"B NCDB"}
+[2025-09-28T17:26:19.041Z] Email verification is required, checking status for: txafile@gmail.com
+[2025-09-28T17:26:19.046Z] Email verification status: true
+[2025-09-28T17:26:19.052Z] Checking 2FA requirement for user: txafile@gmail.com
+[2025-09-28T17:26:19.868Z] Setting cookie for userId: 108161848095579918061
+[2025-09-28T17:26:19.882Z] SUCCESS: Cookie set and redirecting to home page

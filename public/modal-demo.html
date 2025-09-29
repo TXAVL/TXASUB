@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TXA Modal Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .demo-btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .demo-btn.warning {
+            background: linear-gradient(135deg, #ff9800, #ff5722);
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+        }
+        
+        .demo-btn.danger {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+            box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+        }
+        
+        .demo-btn.success {
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .demo-btn.info {
+            background: linear-gradient(135deg, #2196f3, #1976d2);
+            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+        }
+        
+        .demo-section {
+            margin-bottom: 30px;
+        }
+        
+        .demo-section h3 {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+        
+        .result {
+            background: #e8f5e8;
+            border: 1px solid #4caf50;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px 0;
+            color: #2e7d32;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>🚀 TXA Modal Demo - Enhanced Version</h1>
+        
+        <div class="demo-section">
+            <h3>📋 Basic Modals</h3>
+            <div class="demo-grid">
+                <button class="demo-btn" onclick="testConfirm()">Confirm</button>
+                <button class="demo-btn info" onclick="testAlert()">Alert</button>
+                <button class="demo-btn warning" onclick="testWarning()">Warning</button>
+                <button class="demo-btn danger" onclick="testDanger()">Danger</button>
+                <button class="demo-btn success" onclick="testSuccess()">Success</button>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h3>⚡ Advanced Features</h3>
+            <div class="demo-grid">
+                <button class="demo-btn" onclick="testCustom()">Custom Modal</button>
+                <button class="demo-btn" onclick="testAsync()">Async Operation</button>
+                <button class="demo-btn" onclick="testProgress()">Progress Modal</button>
+                <button class="demo-btn" onclick="testNoCancel()">No Cancel Button</button>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h3>💻 Code Examples</h3>
+            
+            <h4>Basic Usage:</h4>
+            <div class="code-block">
+// Simple confirm
+const result = await txaModal.confirm('Bạn có muốn xóa item này?');
+if (result) {
+    console.log('User confirmed');
+}
+            </div>
+            
+            <h4>Custom Modal:</h4>
+            <div class="code-block">
+const result = await txaModal.show({
+    title: 'Custom Title',
+    message: 'Custom message with subtitle',
+    subtitle: 'This is a subtitle',
+    type: 'info',
+    icon: '🎯',
+    confirmText: 'Custom OK',
+    cancelText: 'Custom Cancel'
+});
+            </div>
+            
+            <h4>Async Operation:</h4>
+            <div class="code-block">
+const result = await txaModal.confirmAsync(
+    'Xóa item này sẽ không thể hoàn tác?',
+    'Xác nhận xóa',
+    async () => {
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        return { success: true };
+    }
+);
+            </div>
+        </div>
+        
+        <div id="result" class="result" style="display: none;">
+            Result: <span id="resultText"></span>
+        </div>
+    </div>
+
+    <script src="js/txa-modal.js"></script>
+    <script>
+        // Test functions
+        async function testConfirm() {
+            const result = await txaModal.confirm('Bạn có chắc chắn muốn thực hiện hành động này?');
+            showResult(`Confirm: ${result}`);
+        }
+        
+        async function testAlert() {
+            await txaModal.alert('Đây là thông báo thông thường');
+            showResult('Alert: User clicked OK');
+        }
+        
+        async function testWarning() {
+            const result = await txaModal.warning('Cảnh báo: Hành động này có thể gây hậu quả!');
+            showResult(`Warning: ${result}`);
+        }
+        
+        async function testDanger() {
+            const result = await txaModal.danger('Nguy hiểm: Bạn sắp xóa dữ liệu quan trọng!');
+            showResult(`Danger: ${result}`);
+        }
+        
+        async function testSuccess() {
+            await txaModal.success('Thành công: Dữ liệu đã được lưu!');
+            showResult('Success: User clicked OK');
+        }
+        
+        async function testCustom() {
+            const result = await txaModal.show({
+                title: 'Modal Tùy chỉnh',
+                subtitle: 'Với subtitle và icon custom',
+                message: 'Đây là modal với nhiều tùy chọn tùy chỉnh. Bạn có thể thay đổi icon, màu sắc, và nội dung.',
+                type: 'info',
+                icon: '🎯',
+                confirmText: 'Tùy chỉnh OK',
+                cancelText: 'Tùy chỉnh Cancel'
+            });
+            showResult(`Custom: ${result}`);
+        }
+        
+        async function testAsync() {
+            const result = await txaModal.confirmAsync(
+                'Thực hiện thao tác bất đồng bộ?',
+                'Async Operation',
+                async () => {
+                    // Simulate API call
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    return { success: true, data: 'Operation completed' };
+                }
+            );
+            showResult(`Async: ${JSON.stringify(result)}`);
+        }
+        
+        async function testProgress() {
+            const modal = txaModal.progress('Đang xử lý dữ liệu...', 'Processing');
+            
+            // Simulate progress
+            setTimeout(() => {
+                txaModal.hide();
+                txaModal.success('Hoàn thành!');
+            }, 2000);
+            
+            showResult('Progress: Started');
+        }
+        
+        async function testNoCancel() {
+            const result = await txaModal.show({
+                title: 'Modal Không có Cancel',
+                message: 'Modal này chỉ có nút OK, không có nút Cancel.',
+                type: 'info',
+                confirmText: 'OK',
+                cancelText: null
+            });
+            showResult(`No Cancel: ${result}`);
+        }
+        
+        function showResult(text) {
+            const resultDiv = document.getElementById('result');
+            const resultText = document.getElementById('resultText');
+            resultText.textContent = text;
+            resultDiv.style.display = 'block';
+            
+            // Hide after 5 seconds
+            setTimeout(() => {
+                resultDiv.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.demo-btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px) scale(1.02)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
